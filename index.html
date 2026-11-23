@@ -187,12 +187,12 @@ button{font:inherit;color:inherit;cursor:pointer}
 }
 /* growth */
 .growmath{display:flex;flex-wrap:wrap;gap:10px}
-.growmath div{flex:1 1 160px;border-radius:14px;padding:12px 14px;background:var(--card);border:1px solid var(--line)}
-.growmath div.hot{background:linear-gradient(150deg,var(--plum),var(--wine));color:#fff;border:0}
+.growmath>div{flex:1 1 160px;border-radius:14px;padding:12px 14px;background:var(--card);border:1px solid var(--line)}
+.growmath>div.hot{background:linear-gradient(150deg,var(--plum),var(--wine));color:#fff;border:0}
 .growmath .big{font-size:34px}
-.growmath div.hot .big{color:#FBF18F}
+.growmath>div.hot .big{color:#FBF18F}
 .growmath small{display:block;font-size:12px;color:var(--muted);margin-top:2px}
-.growmath div.hot small{color:#fff;opacity:.85}
+.growmath>div.hot small{color:#fff;opacity:.85}
 .tactics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .tac{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
 .tac h4{margin:0;font-size:15px;line-height:1.3}
