@@ -20,12 +20,6 @@
   --script:"Yellowtail","Brush Script MT",cursive;
   --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --paper:#16111A; --card:#211A27; --ink:#F4E9DA; --muted:#A99AA5; --line:#3A2D42; --plum:#2A1438; --plum-ink:#F1E3F5;
-  --wine:#F08EAE; --soft:#2A2131; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --paper:#16111A; --card:#211A27; --ink:#F4E9DA; --muted:#A99AA5; --line:#3A2D42; --plum:#2A1438; --plum-ink:#F1E3F5;
-  --wine:#F08EAE; --soft:#2A2131; color-scheme:dark}
 
 *{box-sizing:border-box}
 body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:14px;line-height:1.5;
@@ -43,7 +37,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .pill b{font-weight:700}
 
 /* app frame */
-.frame{border:3px solid var(--ink);border-radius:28px;background:var(--card);padding:14px;}
+.frame{border:3px solid var(--ink);box-shadow:8px 8px 0 var(--clay);border-radius:28px;background:var(--card);padding:14px;}
 .app{display:grid;grid-template-columns:56px minmax(0,1fr) 290px 270px;gap:14px;align-items:start}
 .side{background:var(--plum);color:var(--plum-ink);border-radius:18px;padding:14px 0;display:flex;flex-direction:column;align-items:center;gap:14px;position:sticky;top:12px;min-height:520px}
 .side .logo{width:34px;height:34px;border-radius:50%;background:var(--sun);color:#2B1A21;display:grid;place-items:center;font-family:var(--display);font-size:18px}
@@ -191,6 +185,38 @@ button{font:inherit;color:inherit;cursor:pointer}
   .modal{grid-template-columns:minmax(0,1fr)}.modal .art{aspect-ratio:auto;min-height:180px;border-radius:22px 22px 0 0}
   .pillars,.kpis{grid-template-columns:minmax(0,1fr)}.rhythm{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+/* growth */
+.growmath{display:flex;flex-wrap:wrap;gap:10px}
+.growmath div{flex:1 1 160px;border-radius:14px;padding:12px 14px;background:var(--card);border:1px solid var(--line)}
+.growmath div.hot{background:linear-gradient(150deg,var(--plum),var(--wine));color:#fff;border:0}
+.growmath .big{font-size:34px}
+.growmath div.hot .big{color:#FBF18F}
+.growmath small{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+.growmath div.hot small{color:#fff;opacity:.85}
+.tactics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.tac{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.tac h4{margin:0;font-size:15px;line-height:1.3}
+.tac p{margin:0;font-size:12.5px;color:var(--muted)}
+.tac .imp{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:3px 9px;align-self:flex-start}
+.imp.hi{background:#FBF18F;color:#2B1A21}
+.imp.mid{background:var(--soft);color:var(--muted)}
+.tac .how{margin-top:auto;font-size:12.5px;background:var(--soft);border-radius:10px;padding:8px 10px}
+.ideas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.idea{border:1px solid var(--line);background:var(--card);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.idea .top{padding:14px;color:#fff;display:flex;flex-direction:column;gap:8px;min-height:120px}
+.idea .meta{display:flex;flex-wrap:wrap;gap:6px;font-size:10.5px;font-weight:700;letter-spacing:.06em}
+.idea .meta span{background:rgba(0,0,0,.25);border-radius:6px;padding:2px 7px}
+.idea .hk{font-family:var(--display);font-size:21px;line-height:1.08;text-transform:uppercase;color:#FBF18F;text-shadow:0 1px 4px rgba(0,0,0,.4);text-wrap:balance}
+.idea .bd{padding:14px;display:flex;flex-direction:column;gap:8px;font-size:12.5px;flex:1}
+.idea .bd p{margin:0}
+.idea .bd b{display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1px}
+.idea .ft{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:8px;border-top:1px dashed var(--line);padding-top:10px}
+.idea .ft label{display:inline-flex;align-items:center;gap:6px;font-weight:600;cursor:pointer}
+.idea .ft input{accent-color:var(--court);width:15px;height:15px;margin:0}
+.idea .cta{font-size:11.5px;color:var(--wine);font-weight:600;text-align:right}
+.idea.done{opacity:.55}
+@media (max-width:900px){.tactics,.ideas{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.tactics,.ideas{grid-template-columns:minmax(0,1fr)}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
@@ -211,6 +237,7 @@ button{font:inherit;color:inherit;cursor:pointer}
       <nav class="side" aria-label="Sekcie">
         <div class="logo">D</div>
         <a href="#plan" class="on" title="Kalendár"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></a>
+        <a href="#growth" title="Rast sledovateľov"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></a>
         <a href="#pillars" title="Piliere obsahu"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></a>
         <a href="#rhythm" title="Týždenný rytmus"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></a>
         <a href="#brands" title="Spolupráce so značkami"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></a>
@@ -275,6 +302,21 @@ button{font:inherit;color:inherit;cursor:pointer}
       </aside>
     </div>
   </div>
+
+  <section class="section" id="growth">
+    <h2><em>how to grow</em>Rast sledovateľov</h2>
+    <p class="lead">Cieľ +500 sledovateľov za december je asi 17 nových denne. Najviac ich prinesú reels, ktoré uvidia aj ľudia, čo ťa ešte nesledujú. Preto je dôležitejšie, aby ich pozreli do konca a zdieľali, než počet lajkov.</p>
+    <div class="growmath">
+      <div class="hot"><div class="big">+500</div><small>sledovateľov do 31. 12.</small></div>
+      <div><div class="big">~17</div><small>nových denne</small></div>
+      <div><div class="big">3×</div><small>reels týždenne, Po / St / Pi</small></div>
+      <div><div class="big">18–20 h</div><small>čas postovania, keď ľudia scrollujú po práci</small></div>
+    </div>
+    <div class="tactics" id="tactics"></div>
+    <h2 style="font-size:clamp(26px,3.6vw,36px);margin-top:10px"><em>backup ideas</em>Keď nestihneš natáčať</h2>
+    <p class="lead">Šesť záložných postov len z klipov z obliekania alebo zo záberov, ktoré už máš. Keď niektorý post z kalendára nevyjde, siahni sem.</p>
+    <div class="ideas" id="ideas"></div>
+  </section>
 
   <section class="section" id="pillars">
     <h2><em>what you post</em>Piliere obsahu</h2>
@@ -354,6 +396,22 @@ const PILLARS={
   gear:{name:"Gear & lifestyle",pct:"15%",cls:"p-gear",desc:"Taška, rakety, rána pred tréningom, regenerácia. Ukážka, že vieš produkt nakrútiť.",brands:"Priťahuje: športové obchody, nápoje, regeneráciu"},
   fashion:{name:"Móda & outfity",pct:"25%",cls:"p-fashion",desc:"Tvoje outfity mimo kurtu: do práce, do mesta, na víkend. Zaujmú aj ľudí, ktorí tenis nehrajú, a profil je tak zaujímavý pre oveľa viac značiek.",brands:"Priťahuje: módne značky, butiky, šperky, kozmetiku"}
 };
+const TACTICS=[
+ ["hi","Hook v prvej sekunde","Instagram rozhoduje podľa toho, koľko ľudí video pozrie do konca. Bez silného začiatku ho väčšina odscrolluje.","Text v tvojom žltom písme hneď v prvom zábere a hneď pohyb, žiadne pomalé úvody."],
+ ["hi","Collab posty","Jeden reel sa zobrazí na dvoch profiloch naraz. Najrýchlejšia cesta k novým ľuďom.","Pozvi ako spoluautora tenisový klub, trénera, kamarátku z kurtu alebo butik, ktorého oblečenie nosíš."],
+ ["hi","Série, na ktoré sa ľudia vracajú","Keď ľudia vedia, že príde ďalší diel, začnú ťa sledovať, aby ho nezmeškali.","Napríklad „Adult tennis diary“ alebo „What I wore this week“. Rovnaký názov a rovnaký štýl textu."],
+ ["mid","Komentovanie u iných","Keď píšeš zaujímavé komentáre pod tenisové a módne profily, ich sledovatelia si ťa všimnú.","15 minút denne, skutočné vety, nie len emoji. Najlepšie hneď po tom, čo postneš svoj reel."],
+ ["mid","Odpovedať na každý komentár","Rozhovor v komentároch ukazuje Instagramu, že je o post záujem, a ten ho potom ukáže viac ľuďom.","Prvú hodinu po postnutí odpovedz na všetko, ideálne otázkou."],
+ ["mid","Zdieľať každý post do stories","Tvoji sledovatelia uvidia reel aj vtedy, keď im ho Instagram v kanáli neukázal.","Hneď po postnutí ho zdieľaj s nálepkou anketa alebo otázka."]
+];
+const IDEAS=[
+ ["b1","p-fashion","OBLIEKANIE","REEL","Get dressed with me for tennis + drinks","Obliekaš sa a v texte je, kam ideš. Spája tenis aj módu, čo je presne tvoj profil.","Klipy z obliekania, posledný záber s raketou a taškou.","Komentár: „court or bar look?“"],
+ ["b2","p-fashion","OBLIEKANIE","REEL","Pajamas to outfit in 3 seconds","Pred a po s prechodom na tlesknutie. Krátke, ľudia si to pozrú aj viackrát.","Záber v pyžame, tlesknutie, hotový outfit z rovnakého uhla.","Ulož si to"],
+ ["b3","p-fashion","OBLIEKANIE","REEL","Outfit for -2°C that's actually warm","Obliekanie vrstvu po vrstve s krátkym popisom. Praktické, tak si to ľudia ukladajú.","Každá vrstva 1–2 s, text s názvom kúsku.","Ulož si to na zimu"],
+ ["b4","p-fashion","OBLIEKANIE","REEL","Rate my outfit 1–10","Jeden outfit, jedna otázka. Prinesie veľa komentárov.","Otočka v zrkadle, detail topánok a doplnkov.","Komentár: číslo 1–10"],
+ ["b5","p-relatable","STARÝ KLIP","REEL","Expectation vs reality: my first tennis lesson","Vtip bez natáčania: text „expectation“ daj na tvoj najlepší úder, „reality“ na ten najhorší.","Dva tvoje existujúce klipy, dobrý a pokazený.","Označ kamarátku z kurtu"],
+ ["b6","p-tips","LEN TEXT","KARUSEL","Tennis etiquette nobody explains","Karusel len z textu: nechodiť za kurtom počas výmeny, vracať loptičky, hlásiť skóre. Ľudia si to ukladajú.","Žltý text na tmavom pozadí, 5–6 slidov.","Ulož si to"]
+];
 const STATUSES=[["idea","Nápad"],["shot","Natočené"],["edited","Zostrihané"],["posted","Postnuté"]];
 const POSTS=[
  {id:"p1",date:"2026-12-02",pillar:"relatable",fmt:"REEL",hook:"If you started tennis after 30…",hook2:"Your backhand has trust issues",
@@ -426,7 +484,7 @@ const pad=n=>String(n).padStart(2,"0");
 const iso=d=>d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
-let state={status:{},moved:{},todos:{},followers:{start:"",now:""}};
+let state={status:{},moved:{},todos:{},ideas:{},followers:{start:"",now:""}};
 let filter=null;
 const LS="social-plan-dec26";
 try{const s=JSON.parse(localStorage.getItem(LS)||"null");if(s)state=Object.assign(state,s)}catch(e){}
@@ -482,6 +540,13 @@ function renderStats(){
     const g=b-a;$("#folBar").style.width=Math.max(0,Math.min(100,g/5))+"%";
     $("#folText").textContent=(g>=0?"+":"")+g+" z cieľa +500"+(g>=500?" · splnené! 🎉":"");
   }else{$("#folBar").style.width="0%";$("#folText").textContent="Cieľ na mesiac: +500 sledovateľov";}
+}
+function renderGrowth(){
+  state.ideas=state.ideas||{};
+  $("#tactics").innerHTML=TACTICS.map(([i,h,p,how])=>`<div class="tac"><span class="imp ${i}">${i==="hi"?"Veľký účinok":"Stredný účinok"}</span><h4>${esc(h)}</h4><p>${esc(p)}</p><div class="how">${esc(how)}</div></div>`).join("");
+  $("#ideas").innerHTML=IDEAS.map(([id,c,src,f,h,idea,shot,cta])=>`<article class="idea${state.ideas[id]?" done":""}"><div class="top ${c}"><div class="meta"><span>${src}</span><span>${f}</span></div><div class="hk">${esc(h)}</div></div>
+   <div class="bd"><p><b>Nápad</b>${esc(idea)}</p><p><b>Čo natočiť</b>${esc(shot)}</p>
+   <div class="ft"><label><input type="checkbox" id="idea-${id}" data-idea="${id}" ${state.ideas[id]?"checked":""}>Hotové</label><span class="cta">→ ${esc(cta)}</span></div></div></article>`).join("");
 }
 function renderAll(){renderCal();renderGrid();renderLegend();renderStats()}
 
@@ -552,6 +617,7 @@ document.addEventListener("click",e=>{
 });
 document.addEventListener("change",e=>{
   if(e.target.dataset.todo){state.todos[e.target.dataset.todo]=e.target.checked;save()}
+  if(e.target.dataset.idea){state.ideas=state.ideas||{};state.ideas[e.target.dataset.idea]=e.target.checked;save();renderGrowth()}
 });
 let folT;
 ["folStart","folNow"].forEach(id=>$("#"+id).addEventListener("input",e=>{
@@ -567,7 +633,7 @@ $("#cal").addEventListener("dragleave",e=>{const d=e.target.closest(".day");if(d
 $("#cal").addEventListener("drop",e=>{const d=e.target.closest(".day");if(!d||!dragId)return;e.preventDefault();state.moved[dragId]=d.dataset.date;dragId=null;save();renderAll();toast("Presunuté")});
 $("#cal").addEventListener("dragend",()=>{dragId=null;document.querySelectorAll(".day.drop").forEach(x=>x.classList.remove("drop"))});
 
-renderAll();renderTodos();renderPillars();
+renderAll();renderTodos();renderPillars();renderGrowth();
 </script>
 </body>
 </html>
